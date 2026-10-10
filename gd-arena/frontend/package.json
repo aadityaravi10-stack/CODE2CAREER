@@ -1,0 +1,13 @@
+{
+  "name": "gd-arena-vanilla-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^7.0.0"
+  }
+}
