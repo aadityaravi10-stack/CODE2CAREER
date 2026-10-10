@@ -1207,6 +1207,38 @@ nav button:hover {
   font-size: 10.5px;
 }
 
+.message-speaker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-speak-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.message-speak-btn:hover {
+  opacity: 1;
+  color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+.icon-xs {
+  width: 14px;
+  height: 14px;
+}
+
+
 .message p {
   margin: 6px 0 0;
   color: var(--ink);
