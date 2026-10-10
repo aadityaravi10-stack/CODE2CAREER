@@ -10,6 +10,8 @@ DEFAULT_DB_PATH = BASE_DIR / "gd_arena.sqlite3"
 
 
 def _path_from_url(database_url: str | None = None) -> str:
+    if os.getenv("VERCEL"):
+        return "/tmp/gd_arena.sqlite3"
     url = database_url or os.getenv("DATABASE_URL", f"sqlite:///{DEFAULT_DB_PATH}")
     if url == "sqlite:///:memory:":
         return ":memory:"

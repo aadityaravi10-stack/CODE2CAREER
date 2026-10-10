@@ -64,14 +64,17 @@ def create_app() -> Flask:
         )
 
     @app.get("/health")
+    @app.get("/api/health")
     def health():
         return jsonify({"status": "ok", "mode": providers.selected_name(), "server": "Flask WSGI"})
 
     @app.get("/topics")
+    @app.get("/api/topics")
     def topics():
         return jsonify(to_jsonable(list_topics()))
 
     @app.post("/sessions")
+    @app.post("/api/sessions")
     def sessions():
         payload = CreateSessionRequest(**(request.get_json(silent=True) or {}))
         topic = resolve_topic(payload.topic_id, payload.custom_topic)
@@ -88,15 +91,18 @@ def create_app() -> Flask:
         )
 
     @app.get("/sessions/<session_id>")
+    @app.get("/api/sessions/<session_id>")
     def session_detail(session_id: str):
         return jsonify(to_jsonable(get_session(session_id)))
 
     @app.post("/sessions/<session_id>/student-turn")
+    @app.post("/api/sessions/<session_id>/student-turn")
     def student_turn(session_id: str):
         payload = StudentTurnRequest(**(request.get_json(silent=True) or {}))
         return jsonify(to_jsonable(add_student_turn(session_id, payload.text)))
 
     @app.post("/sessions/<session_id>/ai-turn")
+    @app.post("/api/sessions/<session_id>/ai-turn")
     def ai_turn(session_id: str):
         session, message, next_speaker = add_ai_turn(session_id)
         return jsonify(
@@ -110,10 +116,12 @@ def create_app() -> Flask:
         )
 
     @app.post("/sessions/<session_id>/end")
+    @app.post("/api/sessions/<session_id>/end")
     def end(session_id: str):
         return jsonify(to_jsonable(end_session(session_id)))
 
     @app.get("/sessions/<session_id>/report")
+    @app.get("/api/sessions/<session_id>/report")
     def report(session_id: str):
         return jsonify(to_jsonable(generate_report(session_id)))
 

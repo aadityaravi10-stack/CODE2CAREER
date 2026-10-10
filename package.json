@@ -1,0 +1,8 @@
+{
+  "name": "code2career",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd gd-arena/frontend && npm install && npm run build"
+  }
+}
